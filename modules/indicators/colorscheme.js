@@ -206,7 +206,7 @@ const ColorschemeContent = () => Widget.Box({
                 ColorBox({ name: 'E-c', className: 'osd-color osd-color-errorContainer' }),
             ]
         }),
-        ColorSchemeSettingsRevealer(),
+        //ColorSchemeSettingsRevealer(),
     ]
 });
 
