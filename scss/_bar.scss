@@ -130,7 +130,6 @@ $bar_ws_width_focus_active: 2.045rem;
 
 .bar-clock-box {
   margin: 0rem 0.682rem;
-  padding-top: 0.5rem;
 }
 
 .bar-time {
@@ -315,8 +314,8 @@ $bar_ws_width_focus_active: 2.045rem;
 }
 
 .bar-wintitle-topdesc {
-  margin-top: 0rem;
-  margin-bottom: 0rem;
+  margin-top: -0.136rem;
+  margin-bottom: -0.341rem;
   color: $windowtitleOnLayer0Inactive;
 }
 
