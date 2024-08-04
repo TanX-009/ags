@@ -36,7 +36,7 @@ let configOptions = {
     imageViewer: "loupe",
     network: "nm-connection-editor",
     settings: 'XDG_CURRENT_DESKTOP="gnome" gnome-control-center wifi',
-    taskManager: "gnome-usage",
+    taskManager: "foot btop",
     terminal: "foot", // This is only for shell actions
   },
   battery: {
