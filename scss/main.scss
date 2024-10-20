@@ -1,0 +1,28 @@
+@import '../../../.colors/generated/scss/colors.scss'; // Material colors
+
+
+* {
+  font-family: "FantasqueSansM Nerd Font";
+  color: $on_surface;
+}
+
+//general
+@import "common";
+
+//modules
+@import "audio";
+@import "bar";
+@import "chatGPT";
+@import "clock";
+@import "indicator";
+@import "launcher";
+@import "mpris";
+@import "network";
+@import "notifications";
+@import "powermenu";
+@import "quicksettings";
+@import "roundedCorner";
+@import "systemtray";
+@import "title";
+@import "weather";
+@import "workspaces";
