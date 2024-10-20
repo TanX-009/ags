@@ -1,3 +1,3 @@
 ## Dependencies
 
-aylurs-gtk-shell ydotool gjs gtksourceview3 ddcutil dart-sass python-pywayland python-psutil brightnessctl gnome-bluetooth-3.0 blueberry bluez-utils gammastep playerctl gtk-layer-shell ttf-material-symbols-variable-git
+aylurs-gtk-shell dart-sass sptlrx vte3 cava libgtop libastal-tray-git gnome-bluetooth-3.0 playerctl bluez-utils
