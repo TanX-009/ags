@@ -1,0 +1,46 @@
+.statusline {
+  background-color: $surface;
+  font-size: 17px;
+
+  & .normal {
+    & .window_state {
+      & label {
+        color: $surface;
+        padding: 0 1rem;
+      }
+
+      & .tiling {
+        background-color: $primary;
+      }
+
+      & .floating {
+        background-color: $secondary;
+      }
+    }
+  }
+
+  & .right {
+    & .decoration {
+      padding-right: 2px;
+    }
+
+    & .time_indicator {
+      background-color: $surfaceContainerLow;
+      color: $secondary;
+      margin-left: 8px;
+      padding: 0 1rem;
+    }
+
+    & .mode_indicator {
+      background-color: $secondaryContainer;
+      color: $secondary;
+      padding: 0 2rem;
+
+      & .workspace {
+        color: $secondary;
+      }
+    }
+  }
+}
+
+@import "./modes/styles.scss";

@@ -1,0 +1,16 @@
+@import '../../.colors/generated/scss/colors.scss'; // Material colors
+
+$green: $limegreen;
+$yellow: $primary;
+$aqua: $mediumaquamarine;
+$gray: $surfaceContainerLowest;
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  color: $onSurface;
+}
+
+// Windows
+@import "./windows/statusline/styles.scss";
+@import "./windows/file_explorer/styles.scss";
