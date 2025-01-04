@@ -1,55 +1,59 @@
-import Notifyd from 'gi://AstalNotifd'
+import Notifyd from "gi://AstalNotifd";
 
-import { Gdk } from 'astal/gtk3'
-import { execAsync, Variable } from 'astal'
+import { Gdk } from "astal/gtk3";
+import { execAsync, Variable } from "astal";
 
-import MenuMode from './MenuMode'
+import MenuMode from "./MenuMode";
 
-const notifyd = Notifyd.get_default()
+const notifyd = Notifyd.get_default();
 
 const availableCommands = [
-  { name: 'shutdown',     fn: () => execAsync(`systemctl poweroff`) },
-  { name: 'restart',      fn: () => execAsync(`systemctl reboot`) },
-  { name: 'suspend',      fn: () => execAsync(`bash -c 'systemctl suspend && hyprlock'`) },
-  { name: 'logout',       fn: () => execAsync(`hyprctl dispatch exit`) },
-  { name: 'clear-notif',  fn: () => notifyd.get_notifications().forEach(n => n.dismiss()) }
-]
+  { name: "lock", fn: () => execAsync(`sleep 0.5 && hyprlock`) },
+  { name: "reboot", fn: () => execAsync(`systemctl reboot`) },
+  { name: "shutdown", fn: () => execAsync(`systemctl poweroff`) },
+  { name: "logout", fn: () => execAsync(`hyprctl dispatch exit 0`) },
+  { name: "suspend", fn: () => execAsync(`"sleep 0.5 && systemctl suspend"`) },
+  {
+    name: "windows",
+    fn: () => execAsync(`"systemctl reboot --boot-loader-entry=auto-windows"`),
+  },
+  {
+    name: "clear-notif",
+    fn: () => notifyd.get_notifications().forEach((n) => n.dismiss()),
+  },
+];
 
-const queriedCommands = Variable(availableCommands)
-const selectedCommand = Variable(queriedCommands.get()[0])
-const selectedIndex = Variable(0)
+const queriedCommands = Variable(availableCommands);
+const selectedCommand = Variable(queriedCommands.get()[0]);
+const selectedIndex = Variable(0);
 
 export default function CommandMode(props: { gdkmonitor: Gdk.Monitor }) {
-  const { gdkmonitor } = props
+  const { gdkmonitor } = props;
 
   return (
     <MenuMode
       gdkmonitor={gdkmonitor}
-      mode='command'
+      mode="command"
       items={availableCommands}
-      keys={['name']}
+      keys={["name"]}
       queriedItems={queriedCommands}
       selectedItem={selectedCommand}
       selectedIndex={selectedIndex}
       onEnter={(selectedCommand) => {
-        selectedCommand.fn()
-      }}>
-      {queriedCommands(commands => commands.map(command => (
-        <box
-          className={
-            selectedCommand(selectedCmd =>
-              selectedCmd.name === command.name
-                ? 'selected item'
-                : 'item'
-            )
-          }>
-          <label
-            className='name'
-            label={command.name}
-            truncate={true}
-          />
-        </box>
-      )))}
+        selectedCommand.fn();
+      }}
+    >
+      {queriedCommands((commands) =>
+        commands.map((command) => (
+          <box
+            className={selectedCommand((selectedCmd) =>
+              selectedCmd.name === command.name ? "selected item" : "item",
+            )}
+          >
+            <label className="name" label={command.name} truncate={true} />
+          </box>
+        )),
+      )}
     </MenuMode>
-  )
+  );
 }
