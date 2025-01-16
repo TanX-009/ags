@@ -1,6 +1,9 @@
 .statusline {
   background-color: $surface;
-  font-size: 17px;
+  font-size: 21px;
+  // margin-left: 2px;
+  // margin-right: 2px;
+  // margin-bottom: 2px;
 
   & .normal {
     & .window_state {

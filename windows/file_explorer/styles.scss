@@ -1,8 +1,11 @@
 .file_explorer {
   background-color: $surface;
   border-right: solid $outline 2px;
-  font-size: 17px;
+  font-size: 20px;
   min-width: 200px;
+  // margin-left: 2px;
+  // margin-top: 2px;
+  // margin-bottom: 2px;
 
   & .header {
     background-color: $surfaceContainerHigh;
