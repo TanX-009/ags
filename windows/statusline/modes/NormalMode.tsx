@@ -9,10 +9,10 @@ import {
   EventBox,
   Scrollable,
 } from "../../../../../../../../usr/share/astal/gjs/gtk3/widget";
+import truncate from "@root/services/truncate";
 
 const hyprland = Hyprland.get_default();
-const spotify = Mpris.Player.new("brave.instance36292");
-const player = Mpris.get_default();
+const players = Mpris.get_default().get_players();
 
 export default function NormalMode() {
   return (
@@ -46,7 +46,11 @@ export default function NormalMode() {
           self.hook(hyprland, "event", () => {
             const focusedClient = hyprland.get_focused_client();
 
-            self.set_label(focusedClient ? focusedClient.get_title() : "~");
+            self.set_label(
+              focusedClient
+                ? `${truncate(focusedClient.get_class(), 20)}: ${truncate(focusedClient.get_title(), 35)}`
+                : "~",
+            );
             //self.set_label(
             //  focusedClient ? focusedClient.get_title() + " -" : "~ -",
             //);
@@ -71,16 +75,18 @@ export default function NormalMode() {
 
       <EventBox
         onScroll={(self, event) => {
-          console.log(event.modifier);
+          console.log(players[0]);
         }}
       >
-        {bind(spotify, "available").as((musicAvailable) =>
+        {bind(players[0], "available").as((musicAvailable) =>
           !musicAvailable ? (
             <label className="music_indicator" label="󰝛 No Music - Title" />
           ) : (
             <label
               className="music_indicator"
-              label={bind(spotify, "title").as((title) => `󰝚 ${title}`)}
+              label={bind(players[0], "title").as(
+                (title) => `󰝚  ${truncate(title, 30)}`,
+              )}
             />
           ),
         )}

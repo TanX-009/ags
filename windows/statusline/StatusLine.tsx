@@ -7,6 +7,7 @@ import { bind, Variable } from "astal";
 
 import BatteryIcon from "@widgets/BatteryIcon";
 import StatusLineDivider from "@widgets/StatusLineDivider";
+import SysTray from "@widgets/SysTray";
 
 import NormalMode from "./modes/NormalMode";
 import CommandMode from "./modes/CommandMode";
@@ -20,7 +21,7 @@ const battery = Battery.get_default();
 const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 const microphone = Wp.get_default()?.audio.defaultMicrophone!;
 
-const time = Variable("").poll(1000, `date "+%I : %M %p"`);
+const time = Variable("").poll(1000, `date "+%I:%M%p"`);
 
 function RightSection() {
   return (
@@ -66,9 +67,12 @@ function RightSection() {
           )}
         />
       </box>
-      <StatusLineDivider />
 
-      <label className="user" label={USER} />
+      {
+        // <StatusLineDivider />
+        //
+        // <label className="user" label={USER} />
+      }
 
       <label className="time_indicator" label={time()} />
 
@@ -82,7 +86,8 @@ function RightSection() {
           name="workspace"
           className="workspace"
           label={bind(hyprland, "focusedWorkspace").as(
-            (workspace) => `${workspace.get_id()}:0`,
+            (workspace) =>
+              `${workspace.get_id()}:${hyprland.get_clients().length || 0}`,
           )}
         />
       </stack>

@@ -1,11 +1,11 @@
-import { Binding } from 'astal'
+import { Binding } from "astal";
 
 export default function StatusLineDivider(props: {
-  divider?: string,
-  margin?: number,
-  visible?: boolean | Binding<boolean | undefined> | undefined
+  divider?: string;
+  margin?: number;
+  visible?: boolean | Binding<boolean | undefined> | undefined;
 }) {
-  const { divider = '', margin = 5, visible = true } = props
+  const { divider = "", margin = 5, visible = true } = props;
 
   return (
     <label
@@ -16,5 +16,5 @@ export default function StatusLineDivider(props: {
         margin: 0 ${margin}px;
       `}
     />
-  )
+  );
 }
