@@ -82,12 +82,18 @@ export default function NormalMode() {
           !musicAvailable ? (
             <label className="music_indicator" label="󰝛 No Music - Title" />
           ) : (
-            <label
-              className="music_indicator"
-              label={bind(players[0], "title").as(
-                (title) => `󰝚  ${truncate(title, 30)}`,
-              )}
-            />
+            <EventBox
+              onClick={() => {
+                players[0].play_pause();
+              }}
+            >
+              <label
+                className="music_indicator"
+                label={bind(players[0], "title").as(
+                  (title) => `󰝚  ${truncate(title, 30)}`,
+                )}
+              />
+            </EventBox>
           ),
         )}
       </EventBox>

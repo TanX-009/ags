@@ -15,6 +15,7 @@ import WallpapersMode from "./modes/WallpapersMode";
 
 import { statusLineMode } from "./vars";
 import AppLauncherMode from "./modes/AppLauncherMode";
+import { EventBox } from "../../../../../../../usr/share/astal/gjs/gtk3/widget";
 
 const hyprland = Hyprland.get_default();
 const battery = Battery.get_default();
@@ -45,28 +46,41 @@ function RightSection() {
         <StatusLineDivider />
       </box>
 
-      <box className="volume" halign={Gtk.Align.CENTER} spacing={8}>
-        <icon icon={bind(speaker, "volumeIcon")} />
+      <EventBox
+        onClick={() => {
+          speaker.set_mute(!speaker.get_mute());
+        }}
+      >
+        <box className="volume" halign={Gtk.Align.CENTER} spacing={8}>
+          <icon icon={bind(speaker, "volumeIcon")} />
 
-        <label
-          className="percentage"
-          label={bind(speaker, "volume").as(
-            (percentage) => `${Math.floor(percentage * 100)}%`,
-          )}
-        />
-      </box>
+          <label
+            className="percentage"
+            label={bind(speaker, "volume").as(
+              (percentage) => `${Math.floor(percentage * 100)}%`,
+            )}
+          />
+        </box>
+      </EventBox>
+
       <StatusLineDivider />
 
-      <box className="mic" halign={Gtk.Align.CENTER} spacing={8}>
-        <icon icon={bind(microphone, "volumeIcon")} />
+      <EventBox
+        onClick={() => {
+          microphone.set_mute(!microphone.get_mute());
+        }}
+      >
+        <box className="mic" halign={Gtk.Align.CENTER} spacing={8}>
+          <icon icon={bind(microphone, "volumeIcon")} />
 
-        <label
-          className="percentage"
-          label={bind(microphone, "volume").as(
-            (percentage) => `${Math.floor(percentage * 100)}%`,
-          )}
-        />
-      </box>
+          <label
+            className="percentage"
+            label={bind(microphone, "volume").as(
+              (percentage) => `${Math.floor(percentage * 100)}%`,
+            )}
+          />
+        </box>
+      </EventBox>
 
       {
         // <StatusLineDivider />
