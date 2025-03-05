@@ -28,7 +28,7 @@ function RightSection() {
     <box className="right">
       <label className="decoration" label="󰣇" />
 
-      <StatusLineDivider />
+      <StatusLineDivider divider="" />
 
       <box visible={bind(battery, "isPresent")}>
         <box className="battery" halign={Gtk.Align.CENTER} spacing={8}>
@@ -42,7 +42,7 @@ function RightSection() {
           />
         </box>
 
-        <StatusLineDivider />
+        <StatusLineDivider divider="" />
       </box>
 
       <EventBox
@@ -62,7 +62,7 @@ function RightSection() {
         </box>
       </EventBox>
 
-      <StatusLineDivider />
+      <StatusLineDivider divider="" />
 
       <EventBox
         onClick={() => {
@@ -82,7 +82,7 @@ function RightSection() {
       </EventBox>
 
       {
-        // <StatusLineDivider />
+        // <StatusLineDivider divider="" />
         //
         // <label className="user" label={USER} />
       }
