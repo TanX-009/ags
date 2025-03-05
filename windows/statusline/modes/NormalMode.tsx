@@ -13,6 +13,7 @@ import truncate from "@root/services/truncate";
 
 const hyprland = Hyprland.get_default();
 const players = Mpris.get_default().get_players();
+const spotify = Mpris.Player.new("spotify");
 
 export default function NormalMode() {
   return (
@@ -40,6 +41,18 @@ export default function NormalMode() {
         <label name="floating" className="floating" label="FLOATING" />
       </stack>
 
+      <icon
+        className="window_icon"
+        setup={(self) => {
+          self.hook(hyprland, "event", () => {
+            const focusedClient = hyprland.get_focused_client();
+
+            self.set_icon(
+              focusedClient ? focusedClient.get_class() : "hyprland",
+            );
+          });
+        }}
+      />
       <label
         className="decoration"
         setup={(self) => {
@@ -48,7 +61,7 @@ export default function NormalMode() {
 
             self.set_label(
               focusedClient
-                ? `${truncate(focusedClient.get_class(), 20)}: ${truncate(focusedClient.get_title(), 35)}`
+                ? `${truncate(focusedClient.get_title(), 35)}`
                 : "~",
             );
             //self.set_label(
@@ -75,12 +88,12 @@ export default function NormalMode() {
 
       <EventBox
         onScroll={(self, event) => {
-          console.log(players[0]);
+          //console.log(players[0]);
         }}
       >
-        {bind(players[0], "available").as((musicAvailable) =>
+        {bind(players[0] || spotify, "available").as((musicAvailable) =>
           !musicAvailable ? (
-            <label className="music_indicator" label="󰝛 No Music - Title" />
+            <label className="music_indicator" label="󰝛  No Music - Title" />
           ) : (
             <EventBox
               onClick={() => {

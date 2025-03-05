@@ -7,7 +7,6 @@ import { bind, Variable } from "astal";
 
 import BatteryIcon from "@widgets/BatteryIcon";
 import StatusLineDivider from "@widgets/StatusLineDivider";
-import SysTray from "@widgets/SysTray";
 
 import NormalMode from "./modes/NormalMode";
 import CommandMode from "./modes/CommandMode";
@@ -22,7 +21,7 @@ const battery = Battery.get_default();
 const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 const microphone = Wp.get_default()?.audio.defaultMicrophone!;
 
-const time = Variable("").poll(1000, `date "+%I:%M%p"`);
+const time = Variable("").poll(1000, `date "+%d/%m/%y %I:%M%p"`);
 
 function RightSection() {
   return (
