@@ -1,97 +1,78 @@
-import Mpris from 'gi://AstalMpris'
-import { FType, Tree } from '@windows/file_explorer/utils'
-import { bind } from 'astal'
+import Mpris from "gi://AstalMpris";
+import { FType, Tree } from "@windows/file_explorer/utils";
+import { bind } from "astal";
 
-const spotify = Mpris.Player.new('spotify')
+const termusic = Mpris.Player.new("termusic");
 
 const musicPlayer: Tree = {
   type: FType.DIR,
-  name: 'music_player',
+  name: "music_player",
   children: [
     {
       type: FType.WIDGET,
-      name: 'title',
-      icon: '󰲹',
+      name: "title",
+      icon: "󰲹",
       widget: (
         <label
-          label={
-            bind(spotify, 'title')
-              .as(title => title ?? 'No Music')
-          }
-          maxWidthChars={16}
+          label={bind(termusic, "title").as((title) => title ?? "No Music")}
+          maxWidthChars={24}
           truncate={true}
         />
-      )
+      ),
     },
     {
       type: FType.WIDGET,
-      name: 'artist',
-      icon: '󰠃',
+      name: "artist",
+      icon: "󰠃",
       widget: (
         <label
-          label={
-            bind(spotify, 'artist')
-              .as(artist => artist ?? 'Artist')
-          }
-          maxWidthChars={16}
+          label={bind(termusic, "artist").as((artist) => artist ?? "Artist")}
+          maxWidthChars={24}
           truncate={true}
         />
-      )
+      ),
     },
     {
       type: FType.WIDGET,
-      name: 'album',
-      icon: '󰀥',
+      name: "album",
+      icon: "󰀥",
       widget: (
         <label
-          label={
-            bind(spotify, 'album')
-              .as(album => album ?? 'Album')
-          }
+          label={bind(termusic, "album").as((album) => album ?? "Album")}
           maxWidthChars={16}
           truncate={true}
         />
-      )
+      ),
     },
     {
       type: FType.WIDGET,
-      name: 'controls',
-      icon: '',
+      name: "controls",
+      icon: "",
       widget: (
-        <box
-          className='music_controls'
-          spacing={8}>
-          <button
-            cursor='pointer'
-            onClick={() => spotify.previous()}>
-            <label label='󰒮' />
+        <box className="music_controls" spacing={8}>
+          <button cursor="pointer" onClick={() => termusic.previous()}>
+            <label label="󰒮" />
           </button>
 
-          <button
-            cursor='pointer'
-            onClick={() => spotify.play_pause()}>
+          <button cursor="pointer" onClick={() => termusic.play_pause()}>
             <label
-              label={
-                bind(spotify, 'playbackStatus')
-                  .as(status =>
-                    status === Mpris.PlaybackStatus.STOPPED
-                      ? '󰓛'
-                      : status === Mpris.PlaybackStatus.PLAYING
-                        ? '󰏤' : '󰐊'
-                  )
-              }
+              label={bind(termusic, "playbackStatus").as((status) =>
+                status === Mpris.PlaybackStatus.STOPPED
+                  ? "󰓛"
+                  : status === Mpris.PlaybackStatus.PLAYING
+                    ? "󰏤"
+                    : "󰐊",
+              )}
             />
           </button>
 
-          <button
-            cursor='pointer'
-            onClick={() => spotify.next()}>
-            <label label='󰒭' />
+          <button cursor="pointer" onClick={() => termusic.next()}>
+            <label label="󰒭" />
           </button>
         </box>
-      )
-    }
-  ]
-}
+      ),
+    },
+  ],
+};
 
-export default musicPlayer
+export default musicPlayer;

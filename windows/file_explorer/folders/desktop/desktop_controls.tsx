@@ -1,86 +1,86 @@
-import Wp from 'gi://AstalWp'
-import Mpris from 'gi://AstalMpris'
-import Brightness from '@services/Brightness'
+import Wp from "gi://AstalWp";
+import Mpris from "gi://AstalMpris";
+import Brightness from "@services/Brightness";
 
-import { FType, Tree } from '@windows/file_explorer/utils'
-import { bind } from 'astal'
+import { FType, Tree } from "@windows/file_explorer/utils";
+import { bind } from "astal";
 
-const audio = Wp.get_default()!.get_audio()!
-const spotify = Mpris.Player.new('spotify')
-const brightness = Brightness.get_default()
+const audio = Wp.get_default()!.get_audio()!;
+const termusic = Mpris.Player.new("termusic");
+const brightness = Brightness.get_default();
 
 const desktopControls: Tree = {
   type: FType.DIR,
-  name: 'desktop_controls',
+  name: "desktop_controls",
   children: [
     {
       type: FType.WIDGET,
-      name: 'speaker',
-      icon: '󰕾',
+      name: "speaker",
+      icon: "󰕾",
       widget: (
         <box>
-          {bind(audio, 'defaultSpeaker').as(speaker => (
+          {bind(audio, "defaultSpeaker").as((speaker) => (
             <box>
-              <label label='[' />
+              <label label="[" />
               <slider
-                value={bind(speaker, 'volume')}
+                value={bind(speaker, "volume")}
                 min={0}
                 max={1.5}
                 step={0.01}
                 drawValue={false}
                 hexpand={true}
-                cursor='pointer'
+                cursor="pointer"
                 onDragged={({ value }) => speaker.set_volume(value)}
               />
-              <label label=']' />
+              <label label="]" />
             </box>
           ))}
         </box>
-      )
+      ),
     },
     {
       type: FType.WIDGET,
-      name: 'music',
-      icon: '󰝚',
+      name: "music",
+      icon: "󰝚",
       widget: (
         <box>
-          <label label='[' />
+          <label label="[" />
           <slider
-            value={bind(spotify, 'volume')}
+            value={bind(termusic, "volume")}
             min={0}
             max={1}
             step={0.01}
             drawValue={false}
             hexpand={true}
-            cursor='pointer'
-            onDragged={({ value }) => spotify.set_volume(value)}
+            cursor="pointer"
+            onDragged={({ value }) => termusic.set_volume(value)}
           />
-          <label label=']' />
+          <label label="]" />
         </box>
-      )
+      ),
     },
     {
       type: FType.WIDGET,
-      name: 'bright',
-      icon: '󰃠',
+      name: "bright",
+      icon: "󰃠",
       widget: (
         <box>
-          <label label='[' />
+          <label label="[" />
           <slider
-            value={bind(brightness, 'brightness')}
+            value={bind(brightness, "brightness")}
             min={0}
             max={1}
             step={0.01}
             drawValue={false}
             hexpand={true}
-            cursor='pointer'
+            cursor="pointer"
             onDragged={({ value }) => brightness.set_brightness(value)}
           />
-          <label label=']' />
+          <label label="]" />
         </box>
-      )
-    }
-  ]
-}
+      ),
+    },
+  ],
+};
 
-export default desktopControls
+export default desktopControls;

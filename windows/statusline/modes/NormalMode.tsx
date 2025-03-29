@@ -13,7 +13,7 @@ import truncate from "@root/services/truncate";
 
 const hyprland = Hyprland.get_default();
 const players = Mpris.get_default().get_players();
-const spotify = Mpris.Player.new("spotify");
+const termusic = Mpris.Player.new("termusic");
 
 export default function NormalMode() {
   return (
@@ -91,7 +91,7 @@ export default function NormalMode() {
           //console.log(players[0]);
         }}
       >
-        {bind(players[0] || spotify, "available").as((musicAvailable) =>
+        {bind(players[0] || termusic, "available").as((musicAvailable) =>
           !musicAvailable ? (
             <label className="music_indicator" label="󰝛  No Music - Title" />
           ) : (
