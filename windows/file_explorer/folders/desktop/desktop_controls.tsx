@@ -6,7 +6,7 @@ import { FType, Tree } from "@windows/file_explorer/utils";
 import { bind } from "astal";
 
 const audio = Wp.get_default()!.get_audio()!;
-const termusic = Mpris.Player.new("termusic");
+const g4music = Mpris.Player.new("g4music");
 const brightness = Brightness.get_default();
 
 const desktopControls: Tree = {
@@ -46,14 +46,14 @@ const desktopControls: Tree = {
         <box>
           <label label="[" />
           <slider
-            value={bind(termusic, "volume")}
+            value={bind(g4music, "volume")}
             min={0}
             max={1}
             step={0.01}
             drawValue={false}
             hexpand={true}
             cursor="pointer"
-            onDragged={({ value }) => termusic.set_volume(value)}
+            onDragged={({ value }) => g4music.set_volume(value)}
           />
           <label label="]" />
         </box>

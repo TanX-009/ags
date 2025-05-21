@@ -2,7 +2,7 @@ import Mpris from "gi://AstalMpris";
 import { FType, Tree } from "@windows/file_explorer/utils";
 import { bind } from "astal";
 
-const termusic = Mpris.Player.new("termusic");
+const g4music = Mpris.Player.new("g4music");
 
 const musicPlayer: Tree = {
   type: FType.DIR,
@@ -14,7 +14,7 @@ const musicPlayer: Tree = {
       icon: "󰲹",
       widget: (
         <label
-          label={bind(termusic, "title").as((title) => title ?? "No Music")}
+          label={bind(g4music, "title").as((title) => title ?? "No Music")}
           maxWidthChars={24}
           truncate={true}
         />
@@ -26,7 +26,7 @@ const musicPlayer: Tree = {
       icon: "󰠃",
       widget: (
         <label
-          label={bind(termusic, "artist").as((artist) => artist ?? "Artist")}
+          label={bind(g4music, "artist").as((artist) => artist ?? "Artist")}
           maxWidthChars={24}
           truncate={true}
         />
@@ -38,7 +38,7 @@ const musicPlayer: Tree = {
       icon: "󰀥",
       widget: (
         <label
-          label={bind(termusic, "album").as((album) => album ?? "Album")}
+          label={bind(g4music, "album").as((album) => album ?? "Album")}
           maxWidthChars={16}
           truncate={true}
         />
@@ -50,13 +50,13 @@ const musicPlayer: Tree = {
       icon: "",
       widget: (
         <box className="music_controls" spacing={8}>
-          <button cursor="pointer" onClick={() => termusic.previous()}>
+          <button cursor="pointer" onClick={() => g4music.previous()}>
             <label label="󰒮" />
           </button>
 
-          <button cursor="pointer" onClick={() => termusic.play_pause()}>
+          <button cursor="pointer" onClick={() => g4music.play_pause()}>
             <label
-              label={bind(termusic, "playbackStatus").as((status) =>
+              label={bind(g4music, "playbackStatus").as((status) =>
                 status === Mpris.PlaybackStatus.STOPPED
                   ? "󰓛"
                   : status === Mpris.PlaybackStatus.PLAYING
@@ -66,7 +66,7 @@ const musicPlayer: Tree = {
             />
           </button>
 
-          <button cursor="pointer" onClick={() => termusic.next()}>
+          <button cursor="pointer" onClick={() => g4music.next()}>
             <label label="󰒭" />
           </button>
         </box>

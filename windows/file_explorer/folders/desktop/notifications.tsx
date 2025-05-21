@@ -33,7 +33,7 @@ const notifications: Tree = {
               widget: (
                 <label
                   label={
-                    notification.get_app_name() === "termusic"
+                    notification.get_app_name() === "g4music"
                       ? `󰝚 Playing - ${notification.get_summary()}`
                       : notification.get_summary()
                   }
