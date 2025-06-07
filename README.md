@@ -1,3 +1,3 @@
 ## Dependencies
 
-aylurs-gtk-shell gjs libastal-meta dart-sass
+aylurs-gtk-shell gjs dart-sass

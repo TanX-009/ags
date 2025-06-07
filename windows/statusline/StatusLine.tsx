@@ -23,6 +23,10 @@ const microphone = Wp.get_default()?.audio.defaultMicrophone!;
 
 const time = Variable("").poll(1000, `date "+%d/%m/%y %I:%M%p"`);
 
+wp.connect("ready", () => {
+  console.log(microphone.volume);
+});
+
 function RightSection() {
   return (
     <box className="right">
